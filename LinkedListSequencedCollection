@@ -1,0 +1,73 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+// Doubly linked deque: add/remove at both ends in O(1)
+public class LinkedListSequencedCollection<T> implements Iterable<T> {
+    private static class Node<T>{ T v; Node<T> prev, next; Node(T v){ this.v = v; } }
+
+    private Node<T> head, tail;
+    private int n;
+
+    public int size(){ return n; }
+    public boolean isEmpty(){ return n == 0; }
+
+    public void addFirst(T x){
+        Node<T> p = new Node<>(x);
+        p.next = head;
+        if (head != null) head.prev = p; else tail = p; // empty -> tail=p
+        head = p; n++;
+    }
+
+    public void addLast(T x){
+        Node<T> p = new Node<>(x);
+        p.prev = tail;
+        if (tail != null) tail.next = p; else head = p; // empty -> head=p
+        tail = p; n++;
+    }
+
+    public T removeFirst(){
+        if (head == null) throw new NoSuchElementException();
+        T v = head.v;
+        head = head.next;
+        if (head != null) head.prev = null; else tail = null; // became empty
+        n--; return v;
+    }
+
+    public T removeLast(){
+        if (tail == null) throw new NoSuchElementException();
+        T v = tail.v;
+        tail = tail.prev;
+        if (tail != null) tail.next = null; else head = null; // became empty
+        n--; return v;
+    }
+
+    public T peekFirst(){
+        if (head == null) throw new NoSuchElementException();
+        return head.v;
+    }
+
+    public T peekLast(){
+        if (tail == null) throw new NoSuchElementException();
+        return tail.v;
+    }
+
+    @Override public Iterator<T> iterator(){
+        return new Iterator<T>(){
+            Node<T> cur = head;
+            public boolean hasNext(){ return cur != null; }
+            public T next(){ T v = cur.v; cur = cur.next; return v; }
+        };
+    }
+}/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package LinkedListSequencedCollection;
+
+/**
+ *
+ * @author User
+ */
+public class java {
+    
+}
