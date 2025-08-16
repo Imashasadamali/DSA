@@ -1,0 +1,24 @@
+import java.util.PriorityQueue;
+
+// Min-heap priority queue using natural ordering
+public class PriorityQueueQueue<T extends Comparable<T>> {
+    private final PriorityQueue<T> pq = new PriorityQueue<>();
+
+    public int size(){ return pq.size(); }
+    public boolean isEmpty(){ return pq.isEmpty(); }
+    public void offer(T x){ pq.offer(x); } // insert
+    public T peek(){ return pq.peek(); }   // smallest or null
+    public T poll(){ return pq.poll(); }   // remove smallest or null
+}/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package PriorityQueueQueue;
+
+/**
+ *
+ * @author User
+ */
+public class java {
+    
+}
